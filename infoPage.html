@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INFOS</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- navigation bar -->
+    <div class="nav-home">
+      <nav role="navigation" class="nav-menu">
+        <a href="#" class="nav-link">Main page</a>
+        <a href="#" class="nav-link">World map</a>
+        <a href="#" class="nav-link">Cluj</a>
+      </nav>
+    </div>
+
+    <!-- introduction photo and text -->
+    <div class="introduction">
+      <div class="column">
+        <img src="./images/recycle.jpg" alt="main image" id="main-image" />
+      </div>
+      <div class="column c-text">
+        <h1>Reduce. Reuse. Recycle.</h1>
+        <p class="main-text">
+          Learn how reducing, reusing, and recycling can help you,
+        </p>
+        <p class="main-text">
+          your community, and the environment by saving money, energy,
+        </p>
+        <p class="main-text">and natural resources.</p>
+      </div>
+      <br />
+      <!-- read more button -->
+      <button id="btn-more" class="btn" onclick="MoreLess()">Read More</button>
+    </div>
+    <!-- text showing after button click -->
+    <div class="invisible-text">
+      <span id="show-more" style="display: none">
+        <!-- info cards -->
+        <div class="cards-main">
+          <div class="card">
+            <!-- reuse card -->
+            <div class="images">
+              <img
+                src="./images/reuse1.png"
+                alt="reuse-logo"
+                id="reduce-reuse-recycle-images"
+              />
+            </div>
+            <div class="container-cards">
+              <p class="inf-text">
+                Reusing refers to using an item again, whether for its original
+                purpose or a new one.
+              </p>
+            </div>
+          </div>
+          <!-- reduce card -->
+          <div class="card">
+            <div class="images">
+              <img
+                src="./images/reduce1.png"
+                alt="reduce-logo"
+                id="reduce-reuse-recycle-images"
+              />
+            </div>
+            <div class="container-cards">
+              <p class="inf-text">
+                Reducing waste means finding ways to use less materials and
+                energy in order to minimize waste and consume fewer natural
+                resources.
+              </p>
+            </div>
+          </div>
+          <!-- recycle card -->
+          <div class="card">
+            <div class="images">
+              <img
+                src="./images/recycle1.png"
+                alt="recycle-logo"
+                id="reduce-reuse-recycle-images"
+              />
+            </div>
+            <div class="container-cards">
+              <p class="inf-text">
+                Recycling is the process of collecting and processing materials
+                that would otherwise be thrown away as trash and turning them
+                into new products.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq">
+          <div class="general-inf-card">
+            <div class="inf-card">
+              <!-- some informations on how to reduce, reuse and recycle -->
+              <!-- and some tips and facts about recycle -->
+              <h1>Your Right To Know</h1>
+              <ul class="general-inf-lists">
+                <li>
+                  <input type="checkbox" checked />
+                  <i></i>
+                  <h2 class="card-title" style="color: #006494">
+                    How to reduce?
+                  </h2>
+                  <p class="details">
+                    <b>1.</b> Repair, not discard
+                    <br />
+                    <b>2.</b> Cancelling unnecessary mail
+                    <br />
+                    <b>3.</b> Not using disposable plates or utensils at home
+                    <br />
+                    <b>4.</b> Avoid to buy plastic water bottles or plastic bags
+                    <br />
+                    <b>5.</b> Don't overbuy perishables at the grocery store
+                    (meal planning can help with avoiding wasted food)
+                  </p>
+                </li>
+                <li>
+                  <input type="checkbox" checked />
+                  <i></i>
+                  <h2 class="card-title" style="color: #006494">
+                    How to reuse?
+                  </h2>
+                  <p class="details">
+                    <b>1.</b> Using a washable rag to clean your house instead
+                    of paper towels
+                    <br />
+                    <b>2.</b> Donating old clothes or household items
+                    <br />
+                    <b>3.</b> Buying second-hand
+                    <br />
+                    <b>4.</b> Using your old bedding for your pet’s bed
+                    <br />
+                    <b>5.</b> Use reusable shopping bags or totes instead of
+                    plastic
+                    <br />
+                    <b>6.</b> Repair broken appliances, furniture and toys
+                    <br />
+                    <b>7.</b> Buy a reusable water bottle instead of buying
+                    bottled water
+                  </p>
+                </li>
+                <li>
+                  <input type="checkbox" checked />
+                  <i></i>
+                  <h2 class="card-title" style="color: #006494">
+                    How to recycle?
+                  </h2>
+                  <p class="details">
+                    The main barrier to recycling is understanding the process.
+                    That means knowing where and what to recycle. Each city has
+                    their own regulations and processes for recycling. Make sure
+                    you do your research.
+                  </p>
+                </li>
+                <li>
+                  <input type="checkbox" checked />
+                  <i></i>
+                  <h2 class="card-title" style="color: #006494">
+                    Where to recycle?
+                  </h2>
+                  <p class="details">
+                    There are a number of places where you can easily recycle,
+                    specially arranged places in several points in each city.
+                    <br />
+                    Each place is specially arranged with colored containers,
+                    specific for each type of recyclable materials, as we see in
+                    the picture below:
+                    <br />
+                    <img
+                      src="./images/recycle-container.webp"
+                      alt="recycle-containers"
+                      id="recycle-containers"
+                    />
+                  </p>
+                </li>
+                <li>
+                  <input type="checkbox" checked />
+                  <i></i>
+                  <h2 class="card-title" style="color: #006494">
+                    What to recycle?
+                  </h2>
+                  <p class="details">
+                    There are a few materials that cannot be recycled like
+                    garbage, food waste, windows and mirrors, ceramics,
+                    food-tainted items, etc. The most common recyclable
+                    materials are:
+                    <br />
+                    <b>1.</b> Paper<br />
+                    <b>2.</b> Plastic<br />
+                    <b>3.</b> Glass<br />
+                    <b>4.</b> Metals<br />
+                    <b>5.</b> Batteries<br />
+                    <b>6.</b> Electronics
+                  </p>
+                </li>
+                <li>
+                  <input type="checkbox" checked />
+                  <i></i>
+                  <h2 class="card-title" style="color: #006494">
+                    Tips for recycling:
+                  </h2>
+                  <p class="details">
+                    <b>1.</b> Make sure it’s clean! One single dirty product can
+                    contaminate an entire bale. It can ultimately cause
+                    recyclable items to get redirected into a landfill<br />
+                    <b>2.</b> Flatten cardboard. This will save space in your
+                    bin and make room for more recycling<br />
+                    <b>3.</b> Set up designated recycling containers at home,
+                    work, and school<br />
+                    <b>4.</b> Look for products made out of recycled materials
+                    when you shop<br />
+                    <b>5.</b> Before you recycle, think about reducing your
+                    waste and re-using items in a new way <br />
+                  </p>
+                </li>
+                <li>
+                  <input type="checkbox" checked />
+                  <i></i>
+                  <h2 class="card-title" style="color: #006494">
+                    Facts about recycling:
+                  </h2>
+                  <p class="details">
+                    <b>1.</b> 10 plastic bottles can save enough energy to power
+                    a laptop for more than 25 hours <br />
+                    <b>2.</b> Recycling 1 ton of office paper can save the
+                    energy equivalent of consuming 322 gallons of gasoline<br />
+                    <b>3.</b> Recycling one ton of aluminum cans conserves more
+                    than 152 million BTUs, which is the equivalent of 1,024
+                    gallons of gas or 21 barrels of oil <br />
+                    <b>4.</b> Recycling one glass bottle saves enough energy to
+                    light a 100-watt lightbulb for four hours <br />
+                    <b>5.</b> One ton of recycled cardboard saves 46 gallons of
+                    oil <br />
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="general-inf">
+            <!-- some general informations about the 3 R's -->
+            <h1>The 3 'R's</h1>
+            <p class="faq-introduction-text">
+              The principle of reducing waste, reusing and recycling resources
+            </p>
+            <p class="faq-introduction-text">
+              and products is often called the "3Rs."
+            </p>
+            <p class="faq-introduction-text">
+              All of these help to cut down the amount of waste we throw away.
+            </p>
+            <p class="faq-introduction-text">
+              They conserve natural resources, landfill space and energy. Plus,
+              the three R's
+            </p>
+            <p class="faq-introduction-text">
+              save land and money that communities must use to dispose of waste
+              in landfills.
+            </p>
+          </div>
+        </div>
+        <!-- read less button -->
+        <button id="btn-less" class="btn" onclick="MoreLess()">
+          Read Less
+        </button>
+      </span>
+    </div>
+  </body>
+</html>
