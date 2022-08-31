@@ -1,0 +1,334 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --dark-blue: #051923;
+  --dark-blur-1: #003554;
+  --dark-blue-2: #1e5188;
+  --dark-blue-3: #3a6797;
+  --dark-blue-4: #567da6;
+  --bright-blue: #00a6fb;
+  --bright-blue: #0582ca;
+  --bright-blue-1: #006494;
+  --light-blue-1: #e3e9f0;
+  --light-blue-2: #c7d4e1;
+  --light-blue-3: #abbed2;
+  --light-blue-4: #8fa8c1;
+  --light-blue-5: #7292b5;
+  --white: #fff;
+  --black: #000;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+.first {
+  background: var(--light-blue-1);
+  min-height: 100vh;
+}
+
+.first .bannerVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.first .bannerVideo video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+
+.first .bannerVideo video.active {
+  opacity: 1;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 100px;
+}
+
+.container nav .logo {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.5rem;
+  text-shadow: #2a3d4e 1px 1px, #2a3d4e -0px 0px, #2a3d4e -1px 1px,
+    #2a3d4e -2px 2px, #2a3d4e -3px 3px, #2a3d4e -4px 4px, #2a3d4e -5px 5px;
+}
+
+.container nav ul {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.container ul li {
+  list-style: none;
+  margin: 0 20px;
+  text-decoration: none;
+}
+
+.container ul li a {
+  position: relative;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 4px 10px;
+  color: var(--light-blue-1);
+  text-shadow: #2a3d4e 1px 1px, #2a3d4e -0px 0px, #2a3d4e -1px 1px,
+    #2a3d4e -2px 2px, #2a3d4e -3px 3px;
+}
+
+.container nav ul li a:hover,
+.container nav ul li a:active {
+  background: var(--light-blue-1);
+  color: var(--dark-blur-1);
+  border-radius: 10px;
+  text-shadow: none;
+}
+
+.container .content {
+  display: flex;
+  min-width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .content .banner {
+  position: relative;
+  max-width: 700px;
+}
+
+.container .content .banner div {
+  transition: 0.5s ease-in-out;
+  display: none;
+}
+
+.checkbox {
+  display: none;
+}
+
+.container .content .banner div.active {
+  display: initial;
+}
+
+.container .content .banner div h2 {
+  color: var(--white);
+  font-size: 6em;
+  line-height: 1em;
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  text-shadow: #2a3d4e 1px 1px, #2a3d4e -0px 0px, #2a3d4e -1px 1px,
+    #2a3d4e -2px 2px, #2a3d4e -3px 3px, #2a3d4e -4px 4px, #2a3d4e -5px 5px,
+    #2a3d4e -6px 6px, #2a3d4e -7px 7px, #2a3d4e -8px 8px, #2a3d4e -9px 9px;
+}
+
+.container .content .banner p {
+  color: var(--white);
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.controls {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.controls li {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background: var(--white);
+}
+
+@media (max-width: 991px) {
+  .container {
+    width: 100%;
+  }
+  .container nav {
+    padding: 10px 20px;
+  }
+
+  .container .content .banner div h2 {
+    font-size: 4em;
+  }
+  .container .content .banner {
+    text-align: center;
+  }
+  .container nav ul {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20vh;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: var(--white);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    transition: 0.3s;
+  }
+
+  .navbar .nav-menu li {
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .container .checkbox {
+    position: absolute;
+    display: block;
+    height: 32px;
+    width: 32px;
+    top: 20px;
+    right: 20px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 99999999;
+  }
+
+  .container .hamburger-lines {
+    display: block;
+    height: 26px;
+    width: 32px;
+    position: absolute;
+    top: 17px;
+    right: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 99999;
+  }
+
+  .container .hamburger-lines .line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background: var(--white);
+  }
+
+  .container input[type="checkbox"]:checked ~ .test {
+    transform: translateX(0);
+    display: block;
+  }
+  .container .hamburger-lines .line1 {
+    transform-origin: 0% 0%;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .container .hamburger-lines .line2 {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .container .hamburger-lines .line3 {
+    transform-origin: 0% 100%;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+    transform: rotate(45deg);
+    background: var(--black);
+  }
+
+  .container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+    transform: scaleY(0);
+    background: var(--black);
+  }
+
+  .container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+    transform: rotate(-45deg);
+    background: var(--black);
+  }
+
+  .container input[type="checkbox"]:checked ~ .test .nav-item {
+    margin-top: 20px;
+  }
+
+  .controls li {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container .content .banner div h2 {
+    font-size: 3em;
+  }
+
+  .container input[type="checkbox"]:checked ~ .test .nav-item {
+    margin-top: 13px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .container .content .banner div h2 {
+    font-size: 2.5em;
+  }
+
+  .container input[type="checkbox"]:checked ~ .test .nav-item {
+    margin-top: 10px;
+  }
+}
