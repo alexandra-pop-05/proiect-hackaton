@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -40,6 +41,19 @@ public class CountryController {
         aqicnService.processCountryAndCitiesAqi(country);
         return mapper.toDto(countryName);
     }
+
+    @GetMapping("/countries/measurements")
+    public PopupDTO getCountryAqiGet(@RequestParam String countryName) throws ExecutionException, InterruptedException {
+
+        Country country = countryRepo.findCountryByName(countryName);
+        if(country == null){
+            throw new InvalidCountryNameException("can't find country " + countryName + " in database");
+        }
+
+        aqicnService.processCountryAndCitiesAqi(country);
+        return mapper.toDto(countryName);
+    }
+
 
     // GET http://localhost:8080/countries/nocities
     @GetMapping("/countries/nocities")
