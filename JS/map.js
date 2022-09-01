@@ -125,13 +125,61 @@ for (var i = 0; i < countryCount; i++) {
 
 const map = document.querySelector(".container");
 console.log(map);
-let zoom = 1;
-const zoom_speed = 0.2;
+var scale = 1,
+  panning = false,
+  pointX = 0,
+  pointY = 0,
+  start = { x: 0, y: 0 };
 
-document.addEventListener("wheel", (e) => {
-  if (e.deltaY > 0) {
-    map.style.transform = `scale(${(zoom -= zoom_speed)})`;
-  } else {
-    map.style.transform = `scale(${(zoom += zoom_speed)})`;
-  }
+function setTransform() {
+  map.style.transform =
+    "translate(" + pointX + "px," + pointY + "px) scale(" + scale + ")";
+}
+
+function zoom() {
+  map.style.transform = "scale(" + scale + ")";
+}
+
+map.addEventListener("mousedown", (e) => {
+  e.preventDefault();
+  start = { x: e.clientX - pointX, y: e.clientY - pointY };
+  panning = true;
 });
+
+map.addEventListener("mouseup", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  panning = false;
+});
+
+map.addEventListener("mousemove", (e) => {
+  e.preventDefault();
+  if (!panning) {
+    return;
+  }
+  pointX = e.clientX - start.x;
+  pointY = e.clientY - start.y;
+  setTransform();
+});
+
+map.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  var xs = (e.clientX - pointX) / scale,
+    ys = (e.clientY - pointY) / scale,
+    delta = e.whellDelta ? e.wheelDelta : -e.deltaY;
+  delta > 0 ? (scale *= 1.2) : (scale /= 1.2);
+  pointX = e.clientX - xs * scale;
+  pointY = e.clientY - ys * scale;
+  zoom();
+});
+
+// let zoom = 1;
+// const zoom_speed = 0.2;
+
+// document.addEventListener("wheel", (e) => {
+//   if (e.deltaY > 0) {
+//     map.style.transform = `scale(${(zoom -= zoom_speed)})`;
+//   } else {
+//     map.style.transform = `scale(${(zoom += zoom_speed)})`;
+//   }
+// });

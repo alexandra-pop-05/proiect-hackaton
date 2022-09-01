@@ -8,11 +8,35 @@
     <link rel="stylesheet" href="CSS/map.css" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
+      content="width=device-width, initial-scale=1.0,
+    maximum-scale=1.0, user-scalable=0"
+      ,
+      user-scalable="0"
     />
   </head>
   <body>
+    <nav id="navbar">
+      <a href="#" class="logo">Pollution</a>
+      <input class="checkbox" type="checkbox" name="" id="" />
+      <ul class="nav-menu test">
+        <li class="nav-item">
+          <a href="./map.html" class="nav-link">Map</a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">Recycling Centres</a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">Recycling Informations</a>
+        </li>
+      </ul>
+      <div class="hamburger-lines">
+        <span class="line line1"></span>
+        <span class="line line2"></span>
+        <span class="line line3"></span>
+      </div>
+    </nav>
     <div class="container">
+      <div id="info-box"></div>
       <svg
         enable_background="new 0 0 1000 647"
         height="98.5vh"
@@ -30,6 +54,7 @@
             d="M705.095473,347.358975L703.185541,347.101503L699.259904,349.734781L698.161758,348.598999L698.420314,345.662495L696.381534,343.613834L692.809190,346.703602L691.914707,348.301657L690.980523,347.628542L688.972844,348.746781L688.125371,348.323054L686.033561,347.587345L684.488245,347.564174L683.652811,347.455957L682.344409,346.520899L681.909851,347.764979L679.572241,348.438463L679.018582,351.205398L675.266223,352.766604L674.686909,354.312810L672.595672,354.766275L669.767179,353.474360L668.636641,357.694527L667.874589,360.130031L669.081805,360.621575L667.895801,362.437648L669.021466,367.138651L671.122018,367.686762L671.349186,369.770679L668.833711,372.682517L673.480983,374.311011L680.406385,373.822025L684.010834,372.494781L684.107864,369.760841L685.653897,367.928997L692.251661,365.986526L692.098448,364.018170L693.276139,362.026616L695.041314,361.187620L693.951194,358.982338L696.589497,359.086936L697.236317,356.586326L698.617671,355.165008L697.644933,352.022243L699.264491,350.523488L706.834993,348.754680L708.449535,348.364676L707.955785,347.364479L705.095473,347.358975Z "
             data-id="AF"
             data-name="Afghanistan"
+            data-info="<div>State: Afghanistan</div>"
             id="AF"
           />
           <path
