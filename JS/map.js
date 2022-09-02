@@ -217,7 +217,7 @@ path.forEach((link) => {
     description.classList.remove("active");
   });
   link.addEventListener("mousemove", (e) => {
-    description.style.left = e.pageX;
-    description.style.top = e.pageY - 70;
+    description.style.left = e.pageX + "px";
+    description.style.top = e.pageY - 70 + "px";
   });
 });
