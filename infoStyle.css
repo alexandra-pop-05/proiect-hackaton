@@ -1,346 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    min-height: 100%;
-    background-image: url(./images/background.jpg);
-    background-repeat: no-repeat;
-    background-position: 100%;
-    background-size: cover;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  
-  /* navigation bar */
-  .nav-home {
-    position: relative;
-    z-index: 1000;
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    font-size: 20px;
-    background-color: transparent;
-    height: 80px;
-    padding-top: 25px;
-  }
-  
-  .nav-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    padding-left: 300px;
-    padding-right: 300px;
-  }
-  
-  .nav-link {
-    position: relative;
-    width: 150px;
-    height: 30px;
-    margin: auto;
-    padding: auto;
-    line-height: 35px;
-    display: inline-block;
-    text-transform: uppercase;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 3px;
-    font-weight: 600;
-    background-color: hsla(0, 0%, 100%, 0.2);
-    color: #003554;
-    margin: auto;
-    padding: 4px;
-    text-align: center;
-    border-radius: 8px;
-  }
-  
-  .nav-link:hover {
-    background-color: rgb(146, 146, 146);
-  }
-  
-  /* intro */
-  .introduction {
-    width: 98%;
-    height: 98%;
-    margin: 15px;
-    margin-top: 10px;
-  }
-  
-  #main-image {
-    width: 500px;
-    height: 450px;
-    margin-top: 30px;
-    margin-left: 60px;
-  }
-  
-  .column h1 {
-    color: #003554;
-    text-align: center;
-  }
-  
-  .main-text {
-    color: #006494;
-    font-size: 20px;
-    line-height: 35px;
-    padding: auto;
-    margin: auto;
-    text-align: center;
-  }
-  
-  .column {
-    float: left;
-    width: 50%;
-  }
-  
-  .c-text {
-    padding-top: 150px;
-  }
-  
-  .introduction::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  
-  /* read more/less button */
-  .btn {
-    font-size: 15px;
-    letter-spacing: 1px;
-    background-color: white;
-    padding: 7px;
-    margin: auto;
-    color: #006494;
-    border-radius: 10px;
-  }
-  
-  #btn-more {
-    margin-left: 300px;
-    margin-top: 50px;
-    scroll-behavior: smooth;
-  }
-  
-  #btn-less {
-    margin-left: 50%;
-    margin-top: 30px;
-    margin-bottom: 10px;
-  }
-  
-  .btn:hover {
-    background-color: #cccbcb;
-  }
-  
-  #show-more {
-    display: none;
-  }
-  
-  .invisible-text {
-    margin-top: 75px;
-    margin-left: 50px;
-  }
-  
-  /* images */
-  #reduce-reuse-recycle-images {
-    border-radius: 10px;
-    width: 180px;
-    height: 170px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  #recycle-containers {
-    width: 450px;
-    height: 200px;
-    margin-left: 50px;
-  }
-  
-  .images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #recycled-items {
-    width: 250px;
-    height: 150px;
-    margin-left: 200px;
-    border-radius: 10px;
-    display: flex;
-  }
-  
-  /* reduce/reuse/recycle cards */
-  .card {
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    width: 400px;
-  }
-  
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
-  
-  .container-cards {
-    padding: 2px 16px;
-  }
-  
-  /* faq card */
-  .cards-main {
-    display: flex;
-    justify-content: space-between;
-    margin-right: 50px;
-  }
-  
-  .inf-text {
-    color: #006494;
-    font-size: 16px;
-  }
-  
-  /* faq */
-  .faq {
-    display: flex;
-    justify-content: space-between;
-    margin-right: 40px;
-  }
-  
-  .faq-introduction-text {
-    color: #006494;
-    font-size: 18px;
-    line-height: 30px;
-    text-align: center;
-  }
-  
-  .general-inf {
-    margin-top: 350px;
-  }
-  
-  .general-inf h1 {
-    color: #003554;
-    text-align: center;
-  }
-  
-  .general-inf-card {
-    padding-top: 100px;
-    max-width: 700px;
-    margin: auto;
-    padding: 0 15px;
-    text-align: center;
-    width: 50%;
-  }
-  
-  .general-inf-lists {
-    text-align: left;
-    padding: 0;
-    list-style: none;
-  }
-  
-  .general-inf-card h1 {
-    color: #003554;
-    padding: 20px;
-    background-image: url(./images/background.jpg);
-  }
-  
-  .card-title {
-    font-size: 20px;
-    line-height: 34px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    cursor: pointer;
-    padding: 15px 15px 0;
-  }
-  
-  .details {
-    color: #006494;
-    font-size: 16px;
-    line-height: 2;
-    margin: 10px;
-    padding: 10px;
-    transition: 0.6s opacity, 0.6s max-height;
-  }
-  
-  .general-inf-card ul li {
-    position: relative;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    background: transparent;
-    box-shadow: 0 3px 10px -2px rgba(47, 221, 20, 0.1);
-  }
-  
-  /* arrow */
-  .general-inf-card ul li i {
-    position: absolute;
-    transform: translate(-6px, 0);
-    margin-top: 28px;
-    right: 15px;
-  }
-  
-  .general-inf-card ul li i:before,
-  ul li i:after {
-    content: "";
-    position: absolute;
-    background-image: url(./images/background.jpg);
-    width: 3px;
-    height: 9px;
-  }
-  
-  .general-inf-card ul li i:before {
-    transform: translate(-2px, 0) rotate(45deg);
-  }
-  
-  .general-inf-card ul li i:after {
-    transform: translate(2px, 0) rotate(-45deg);
-  }
-  
-  .general-inf-card ul li input[type="checkbox"] {
-    position: absolute;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0;
-  }
-  
-  .general-inf-card ul li input[type="checkbox"]:checked ~ p {
-    max-height: 0;
-    transition: 0.3s;
-    opacity: 0;
-  }
-  
-  .general-inf-card ul li input[type="checkbox"]:checked ~ i:before {
-    transform: translate(2px, 0) rotate(45deg);
-  }
-  
-  .general-inf-card ul li input[type="checkbox"]:checked ~ i:after {
-    transform: translate(-2px, 0) rotate(-45deg);
-  }
-  
-  .inf-card {
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    width: 600px;
-    margin-top: 100px;
-  }
-  
-  .inf-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
-  
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* media queries */
-  /* desktop */
-  @media screen and (max-width: 990px) {
-  }
-  
-  /* tablet */
-  @media screen and (max-width: 769px) {
-  }
-  
-  /* phone */
-  @media screen and (max-width: 481px) and (min-width: 320px) {
-  }
+  margin: 0;
+  min-height: 100%;
+  background-image: url(./images/background.jpg);
+  background-repeat: no-repeat;
+  background-position: 100%;
+  background-size: cover;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* navigation bar */
+.nav-home {
+  position: relative;
+  z-index: 1000;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  font-size: 20px;
+  background-color: transparent;
+  height: 80px;
+  padding-top: 25px;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding-left: 300px;
+  padding-right: 300px;
+}
+
+.nav-link {
+  position: relative;
+  width: 150px;
+  height: 30px;
+  margin: auto;
+  padding: auto;
+  line-height: 35px;
+  display: inline-block;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 600;
+  background-color: hsla(0, 0%, 100%, 0.2);
+  color: #003554;
+  margin: auto;
+  padding: 4px;
+  text-align: center;
+  border-radius: 8px;
+  padding-bottom: 35px;
+}
+
+.nav-link:hover {
+  background-color: rgb(171, 167, 167);
+}
+
+/* intro */
+.introduction {
+  width: 98%;
+  height: 98%;
+  margin: 15px;
+  margin-top: 10px;
+}
+
+#main-image {
+  width: 500px;
+  height: 450px;
+  margin-top: 30px;
+  margin-left: 60px;
+}
+
+.column h1 {
+  color: #003554;
+  text-align: center;
+}
+
+.main-text {
+  color: #006494;
+  font-size: 20px;
+  line-height: 35px;
+  padding: auto;
+  margin: auto;
+  text-align: center;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+.c-text {
+  padding-top: 150px;
+}
+
+.introduction::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* read more/less button */
+.btn {
+  font-size: 15px;
+  letter-spacing: 1px;
+  background-color: white;
+  padding: 7px;
+  margin: auto;
+  color: #006494;
+  border-radius: 10px;
+}
+
+#btn-more {
+  margin-left: 300px;
+  margin-top: 50px;
+  scroll-behavior: smooth;
+}
+
+#btn-less {
+  margin-left: 50%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.btn:hover {
+  background-color: #cccbcb;
+}
+
+#show-more {
+  display: none;
+}
+
+.invisible-text {
+  margin-top: 75px;
+  margin-left: 50px;
+}
+
+/* images */
+#reduce-reuse-recycle-images {
+  border-radius: 10px;
+  width: 180px;
+  height: 170px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#recycle-containers {
+  width: 450px;
+  height: 200px;
+  margin-left: 50px;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#recycled-items {
+  width: 250px;
+  height: 150px;
+  margin-left: 200px;
+  border-radius: 10px;
+  display: flex;
+}
+
+/* reduce/reuse/recycle cards */
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 400px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container-cards {
+  padding: 2px 16px;
+}
+
+/* faq card */
+.cards-main {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 50px;
+}
+
+.inf-text {
+  color: #006494;
+  font-size: 16px;
+}
+
+/* faq */
+.faq {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 40px;
+}
+
+.faq-introduction-text {
+  color: #006494;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.general-inf {
+  margin-top: 350px;
+}
+
+.general-inf h1 {
+  color: #003554;
+  text-align: center;
+}
+
+.general-inf-card {
+  padding-top: 100px;
+  max-width: 700px;
+  margin: auto;
+  padding: 0 15px;
+  text-align: center;
+  width: 50%;
+}
+
+.general-inf-lists {
+  text-align: left;
+  padding: 0;
+  list-style: none;
+}
+
+.general-inf-card h1 {
+  color: #003554;
+  padding: 20px;
+  background-image: url(./images/background.jpg);
+}
+
+.card-title {
+  font-size: 20px;
+  line-height: 34px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 15px 15px 0;
+}
+
+.details {
+  color: #006494;
+  font-size: 16px;
+  line-height: 2;
+  margin: 10px;
+  padding: 10px;
+  transition: 0.6s opacity, 0.6s max-height;
+}
+
+.general-inf-card ul li {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  box-shadow: 0 3px 10px -2px rgba(47, 221, 20, 0.1);
+}
+
+/* arrow */
+.general-inf-card ul li i {
+  position: absolute;
+  transform: translate(-6px, 0);
+  margin-top: 28px;
+  right: 15px;
+}
+
+.general-inf-card ul li i:before,
+ul li i:after {
+  content: "";
+  position: absolute;
+  background-image: url(./images/background.jpg);
+  width: 3px;
+  height: 9px;
+}
+
+.general-inf-card ul li i:before {
+  transform: translate(-2px, 0) rotate(45deg);
+}
+
+.general-inf-card ul li i:after {
+  transform: translate(2px, 0) rotate(-45deg);
+}
+
+.general-inf-card ul li input[type="checkbox"] {
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+}
+
+.general-inf-card ul li input[type="checkbox"]:checked ~ p {
+  max-height: 0;
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.general-inf-card ul li input[type="checkbox"]:checked ~ i:before {
+  transform: translate(2px, 0) rotate(45deg);
+}
+
+.general-inf-card ul li input[type="checkbox"]:checked ~ i:after {
+  transform: translate(-2px, 0) rotate(-45deg);
+}
+
+.inf-card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 600px;
+  margin-top: 100px;
+}
+
+.inf-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* media queries */
+/* desktop */
+@media screen and (max-width: 990px) {
+}
+
+/* tablet */
+@media screen and (max-width: 769px) {
+}
+
+/* phone */
+@media screen and (max-width: 481px) and (min-width: 320px) {
+}
