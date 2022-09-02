@@ -1,10 +1,26 @@
 var countryElements = document.getElementById("countries").childNodes;
 var countryCount = countryElements.length;
+var modal = document.getElementById("myModal");
+var modalHeader = document.getElementById("modal-header");
+var modalBody = document.getElementById("modal-body");
+
 for (var i = 0; i < countryCount; i++) {
-  countryElements[i].onclick = function () {
-    alert("You clicked on " + this.getAttribute("data-name"));
+  countryElements[i].onclick = function getName() {
+    //alert("You clicked on " + this.getAttribute("data-name"));
+    modal.style.display = "block";
+    modalHeader.innerHTML += this.getAttribute("data-name");
+    var data = "<p> Salut <p>";
+    modalBody.innerHTML += data;
   };
 }
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modalHeader.innerHTML = "";
+    modalBody.innerHTML = "";
+    modal.style.display = "none";
+  }
+};
 
 // const NAV_MAP = {
 //     // +
@@ -123,7 +139,7 @@ for (var i = 0; i < countryCount; i++) {
 //   false
 // );
 
-const map = document.querySelector(".container");
+const map = document.querySelector(".body");
 console.log(map);
 var scale = 1,
   panning = false,
@@ -142,6 +158,9 @@ function zoom() {
 
 map.addEventListener("mousedown", (e) => {
   e.preventDefault();
+  console.log(e);
+  console.log(pointX);
+  console.log(pointY);
   start = { x: e.clientX - pointX, y: e.clientY - pointY };
   panning = true;
 });
@@ -164,22 +183,41 @@ map.addEventListener("mousemove", (e) => {
 
 map.addEventListener("wheel", (e) => {
   e.preventDefault();
+  var delta = e.wheelDelta ? e.wheelDelta : -e.deltaY;
+  if (delta > 0) {
+    scale *= 1.2;
+    applyScale(e);
+  } else {
+    if (scale / 1.2 >= 1) {
+      scale /= 1.2;
+      applyScale(e);
+    }
+  }
+});
+
+function applyScale(e) {
   var xs = (e.clientX - pointX) / scale,
-    ys = (e.clientY - pointY) / scale,
-    delta = e.whellDelta ? e.wheelDelta : -e.deltaY;
-  delta > 0 ? (scale *= 1.2) : (scale /= 1.2);
+    ys = (e.clientY - pointY) / scale;
   pointX = e.clientX - xs * scale;
   pointY = e.clientY - ys * scale;
   zoom();
+}
+
+const description = document.querySelector(".description");
+const country = document.querySelector(".countries");
+const path = country.querySelectorAll("path");
+
+path.forEach((link) => {
+  link.addEventListener("mouseover", (e) => {
+    e.preventDefault();
+    description.classList.add("active");
+    description.innerHTML = e.target.getAttribute("data-name");
+  });
+  link.addEventListener("mouseout", (e) => {
+    description.classList.remove("active");
+  });
+  link.addEventListener("mousemove", (e) => {
+    description.style.left = e.pageX;
+    description.style.top = e.pageY - 70;
+  });
 });
-
-// let zoom = 1;
-// const zoom_speed = 0.2;
-
-// document.addEventListener("wheel", (e) => {
-//   if (e.deltaY > 0) {
-//     map.style.transform = `scale(${(zoom -= zoom_speed)})`;
-//   } else {
-//     map.style.transform = `scale(${(zoom += zoom_speed)})`;
-//   }
-// });
