@@ -6,13 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Harta poluare</title>
     <link rel="stylesheet" href="CSS/map.css" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0,
-    maximum-scale=1.0, user-scalable=0"
-      ,
-      user-scalable="0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
     <nav id="navbar">
@@ -32,11 +26,20 @@
         <span class="line line3"></span>
       </div>
     </nav>
+    <div class="description"></div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <!-- Modal header -->
+        <div id="modal-header" class="modal-header"></div>
+        <!-- Modal body -->
+        <div id="modal-body" class="modal-body"></div>
+      </div>
+    </div>
     <div class="body">
       <div class="container">
         <svg
           enable_background="new 0 0 1000 647"
-          height="98.5vh"
+          height="100vh"
           pretty_print="False"
           style="stroke-linejoin: round; stroke: #000; fill: none"
           version="1.1"
@@ -1230,15 +1233,6 @@
             />
           </g>
         </svg>
-        <div class="description"></div>
-        <div id="myModal" class="modal">
-          <div class="modal-content">
-            <!-- Modal header -->
-            <div id="modal-header" class="modal-header"></div>
-            <!-- Modal body -->
-            <div id="modal-body" class="modal-body"></div>
-          </div>
-        </div>
       </div>
     </div>
     <script src="./JS/map.js"></script>
