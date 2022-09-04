@@ -21,8 +21,16 @@ public record WorkerThread(City city) implements Callable<Object[]> {
 
     private Object[] processThread(City city) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://api.waqi.info/feed/" + city.getName() + "/?token=92f4b33e6870f407457f63bd7f7b27711eb93daa";
+        if(city.getGeoLon() == null)
+            return getMeasurementsAPI1(restTemplate, city);
+        else
+            return getMeasurementsAPI2(restTemplate, city);
+    }
+
+    private Object[] getMeasurementsAPI1(RestTemplate restTemplate, City city){
+        String url = "https://api.waqi.info/feed/" + city + "/?token=dcf6fadf-2191-49ab-89af-02b8ed0fb22c";
         String jsonStr = restTemplate.getForObject(url, String.class);
+        if(jsonStr.contains("error")) return null;
 
         String aqi = JsonParser.parseString(jsonStr).getAsJsonObject().get("data").getAsJsonObject().get("aqi").getAsString();
         String t = getJsonObj(jsonStr, "\"t\":{\"v\":", "t");
@@ -38,7 +46,27 @@ public record WorkerThread(City city) implements Callable<Object[]> {
 
         LOG.info("End thread " + city.getName());
         return new Object[]{intAqi, doubleTemp, doubleP, doubleW, doubleH};
+    }
 
+    private Object[] getMeasurementsAPI2(RestTemplate restTemplate, City city){
+        String url = "http://api.airvisual.com/v2/nearest_city?lat=" + city.getGeoLon() + "&lon=" + city.getGeoLat() + "&key=35b32cdc-5b6d-448a-a4b7-9a1eaca8993d";
+        String jsonStr = restTemplate.getForObject(url, String.class);
+        if(jsonStr.contains("fail")) return null;
+
+        String aqi = JsonParser.parseString(jsonStr).getAsJsonObject().get("data").getAsJsonObject().get("current").getAsJsonObject().get("pollution").getAsJsonObject().get("aqius").getAsString();
+        String t = JsonParser.parseString(jsonStr).getAsJsonObject().get("data").getAsJsonObject().get("current").getAsJsonObject().get("weather").getAsJsonObject().get("tp").getAsString();
+        String w = JsonParser.parseString(jsonStr).getAsJsonObject().get("data").getAsJsonObject().get("current").getAsJsonObject().get("weather").getAsJsonObject().get("ws").getAsString();
+        String p = JsonParser.parseString(jsonStr).getAsJsonObject().get("data").getAsJsonObject().get("current").getAsJsonObject().get("weather").getAsJsonObject().get("pr").getAsString();
+        String h = JsonParser.parseString(jsonStr).getAsJsonObject().get("data").getAsJsonObject().get("current").getAsJsonObject().get("weather").getAsJsonObject().get("hu").getAsString();
+
+        int intAqi = !aqi.equals("-") ? Integer.parseInt(aqi) : -1;
+        double doubleTemp = t != null ? Double.parseDouble(t) : -1;
+        double doubleP = p != null ? Double.parseDouble(p) : 0;
+        double doubleW = w != null ? Double.parseDouble(w) : 0;
+        double doubleH = h != null ? Double.parseDouble(h) : 0;
+
+        LOG.info("End thread " + city.getName());
+        return new Object[]{intAqi, doubleTemp, doubleP, doubleW, doubleH};
     }
 
     private String getJsonObj(String jsonStr, String str, String measurement) {

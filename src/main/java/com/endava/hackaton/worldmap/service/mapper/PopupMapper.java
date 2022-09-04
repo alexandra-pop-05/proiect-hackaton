@@ -34,10 +34,10 @@ public class PopupMapper {
 
         List<Object[]> measurements = countryRepo.findMeasurementsByName(countryName);
         popupDTO.setCountryAqi((Integer) measurements.get(0)[0]);
-        popupDTO.setCountryTemp((Double) measurements.get(0)[1]);
-        popupDTO.setCountryPressure((Double) measurements.get(0)[2]);
-        popupDTO.setCountryHumidity((Double) measurements.get(0)[3]);
-        popupDTO.setCountryWind((Double) measurements.get(0)[4]);
+        popupDTO.setCountryTemp(Double.valueOf(String.format("%.2f", (Double) measurements.get(0)[1])));
+        popupDTO.setCountryPressure(Double.valueOf(String.format("%.2f", (Double) measurements.get(0)[2])));
+        popupDTO.setCountryHumidity(Double.valueOf(String.format("%.2f", (Double) measurements.get(0)[3])));
+        popupDTO.setCountryWind(Double.valueOf(String.format("%.2f", (Double) measurements.get(0)[4])));
 
         List<Object[]> objGeoLoc = countryRepo.findGeoLocationByName(countryName);
         List<GeoLocDTO> geoLocations = new ArrayList<>();

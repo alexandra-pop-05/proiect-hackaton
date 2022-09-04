@@ -26,7 +26,12 @@ public class City {
     private Long id;
     @Column(nullable = false)
     private String name;
-
+    @Column
+    private Double geoLat;
+    @Column
+    private Double geoLon;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean isLiveData;
     @OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
     @JoinColumn
     private Measurement cityMeasurement;
@@ -56,6 +61,29 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public Double getGeoLat() {
+        return geoLat;
+    }
+
+    public void setGeoLat(Double geoLat) {
+        this.geoLat = geoLat;
+    }
+
+    public Double getGeoLon() {
+        return geoLon;
+    }
+
+    public void setGeoLon(Double geoLon) {
+        this.geoLon = geoLon;
+    }
+
+    public Boolean getLiveData() {
+        return isLiveData;
+    }
+
+    public void setLiveData(Boolean liveData) {
+        isLiveData = liveData;
     }
 
     public Country getCountry() {

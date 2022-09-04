@@ -22,7 +22,7 @@ import java.util.concurrent.Future;
 @Service
 public class AqicnServiceImpl implements AqicnService {
 
-    private final static Integer refreshTime = 30; // in minutes
+    private final static Integer refreshTime = 720; // in minutes
 
     @Autowired
     private CityRepo cityRepo;
@@ -58,18 +58,18 @@ public class AqicnServiceImpl implements AqicnService {
 
     }
 
-    private void processCountryMeasurements(Country cntry, List<Measurement> measurements) {
+    private void processCountryMeasurements(Country country, List<Measurement> measurements) {
         Integer averageAqi = (int) measurements.stream().map(Measurement::getAqi).filter(aqi -> !aqi.equals(-1)).mapToDouble(Integer::doubleValue).average().orElse(-1);
         Double averageTemp = measurements.stream().map(Measurement::getTemperature).mapToDouble(Double::doubleValue).average().orElse(-1);
         Double averageWind = measurements.stream().map(Measurement::getWind).mapToDouble(Double::doubleValue).average().orElse(-1);
         Double averagePressure = measurements.stream().map(Measurement::getPressure).mapToDouble(Double::doubleValue).average().orElse(-1);
         Double averageHumidity = measurements.stream().map(Measurement::getHumidity).mapToDouble(Double::doubleValue).average().orElse(-1);
 
-        Long countryMeasurementId = countryRepo.findCountryMeasurementById(cntry.getId());
+        Long countryMeasurementId = countryRepo.findCountryMeasurementById(country.getId());
         Measurement measurement;
         if(countryMeasurementId != null){
-            Optional<Measurement> optMeasurment = measurementRepo.findById(countryRepo.findCountryMeasurementById(cntry.getId()));
-            measurement = optMeasurment.get();
+            Optional<Measurement> optMeasurement = measurementRepo.findById(countryRepo.findCountryMeasurementById(country.getId()));
+            measurement = optMeasurement.get();
             measurement.setAqi(averageAqi);
             measurement.setTemperature(averageTemp);
             measurement.setPressure(averagePressure);
@@ -79,22 +79,29 @@ public class AqicnServiceImpl implements AqicnService {
         else {
             measurement = new Measurement(averageAqi, averageTemp, averagePressure, averageHumidity, averageWind, true);
         }
-        cntry.setCountryMeasurement(measurement);
-        cntry.setLastUpdatedDateTime(LocalDateTime.now());
+        country.setCountryMeasurement(measurement);
+        country.setLastUpdatedDateTime(LocalDateTime.now());
         measurementRepo.save(measurement);
-        countryRepo.save(cntry);
+        countryRepo.save(country);
     }
 
-    private List<Measurement> processCitiesMeasurements(Country cntry) throws ExecutionException, InterruptedException {
-        List<City> cities = cityRepo.findCitiesByCountry(cntry);
+    private List<Measurement> processCitiesMeasurements(Country country) throws ExecutionException, InterruptedException {
+        List<City> cities = cityRepo.findCitiesByCountry(country);
 
         List<Future<Object[]>> futures = new ArrayList<>();
+        List<Measurement> measurements = new ArrayList<>();
         for(City city : cities){
-            final Future<Object[]> future = executorService.submit(new WorkerThread(city));
-            futures.add(future);
+            if(city.getLiveData()) {
+                final Future<Object[]> future = executorService.submit(new WorkerThread(city));
+                futures.add(future);
+            }
+            else{
+                Optional<Measurement> optMeasurement = measurementRepo.findById(cityRepo.findCityMeasurementById(city.getId()));
+                measurements.add(optMeasurement.get());
+            }
         }
 
-        List<Measurement> measurements = new ArrayList<>();
+
         for(int i = 0; i < futures.size(); i++)
         {
             cities.get(i).setLastUpdatedDateTime(LocalDateTime.now());

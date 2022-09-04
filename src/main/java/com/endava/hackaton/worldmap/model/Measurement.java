@@ -32,7 +32,6 @@ public class Measurement {
     private Double humidity;
     @Column
     private Double wind;
-
     @JsonIgnore
     @OneToMany(mappedBy = "measurement")
     private List<GeoLocation> geoLocations;
