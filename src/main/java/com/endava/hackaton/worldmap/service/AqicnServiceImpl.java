@@ -9,6 +9,7 @@ import com.endava.hackaton.worldmap.repository.MeasurementRepo;
 import com.endava.hackaton.worldmap.service.thread.WorkerThread;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -24,6 +25,8 @@ public class AqicnServiceImpl implements AqicnService {
 
     private final static Integer refreshTime = 720; // in minutes
 
+    @Autowired
+    private RestTemplate restTemplate;
     @Autowired
     private CityRepo cityRepo;
 
@@ -53,13 +56,11 @@ public class AqicnServiceImpl implements AqicnService {
             }
             return;
         }
-
         processCountryMeasurements(country, processCitiesMeasurements(country));
-
     }
 
     private void processCountryMeasurements(Country country, List<Measurement> measurements) {
-        Integer averageAqi = (int) measurements.stream().map(Measurement::getAqi).filter(aqi -> !aqi.equals(-1)).mapToDouble(Integer::doubleValue).average().orElse(-1);
+        Integer averageAqi = (int) measurements.stream().map(Measurement::getAqi).filter(aqi -> !aqi.equals(-1)).mapToDouble(Integer::doubleValue).average().orElse(0);
         Double averageTemp = measurements.stream().map(Measurement::getTemperature).mapToDouble(Double::doubleValue).average().orElse(-1);
         Double averageWind = measurements.stream().map(Measurement::getWind).mapToDouble(Double::doubleValue).average().orElse(-1);
         Double averagePressure = measurements.stream().map(Measurement::getPressure).mapToDouble(Double::doubleValue).average().orElse(-1);
@@ -92,7 +93,7 @@ public class AqicnServiceImpl implements AqicnService {
         List<Measurement> measurements = new ArrayList<>();
         for(City city : cities){
             if(city.getLiveData()) {
-                final Future<Object[]> future = executorService.submit(new WorkerThread(city));
+                final Future<Object[]> future = executorService.submit(new WorkerThread(city, restTemplate));
                 futures.add(future);
             }
             else{
@@ -100,7 +101,6 @@ public class AqicnServiceImpl implements AqicnService {
                 measurements.add(optMeasurement.get());
             }
         }
-
 
         for(int i = 0; i < futures.size(); i++)
         {
@@ -111,7 +111,9 @@ public class AqicnServiceImpl implements AqicnService {
             if(cityMeasurementId != null){
                 Optional<Measurement> optMeasurement = measurementRepo.findById(cityRepo.findCityMeasurementById(cities.get(i).getId()));
                 measurement = optMeasurement.get();
-                measurement.setAqi((Integer) futures.get(i).get()[0]);
+                if((Integer) futures.get(i).get()[0] != -1) {
+                    measurement.setAqi((Integer) futures.get(i).get()[0]);
+                }
                 measurement.setTemperature((Double) futures.get(i).get()[1]);
                 measurement.setPressure((Double) futures.get(i).get()[2]);
                 measurement.setWind((Double) futures.get(i).get()[3]);

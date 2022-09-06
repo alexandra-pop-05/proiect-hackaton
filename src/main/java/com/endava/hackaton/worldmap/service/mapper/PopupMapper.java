@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,14 +41,6 @@ public class PopupMapper {
         popupDTO.setCountryHumidity(Double.valueOf(String.format("%.2f", (Double) measurements.get(0)[3])));
         popupDTO.setCountryWind(Double.valueOf(String.format("%.2f", (Double) measurements.get(0)[4])));
 
-        List<Object[]> objGeoLoc = countryRepo.findGeoLocationByName(countryName);
-        List<GeoLocDTO> geoLocations = new ArrayList<>();
-        for(Object[] objects : objGeoLoc){
-            geoLocations.add(new GeoLocDTO((Double) objects[0], (Double) objects[1], (String) objects[2]));
-        }
-
-        popupDTO.setRecyclePoints(geoLocations);
-
         List<Object[]> objAqiDesc = cityRepo.getNCitiesOrderByAqisDesc(3, country.getName());
         List<Object[]> objAqiAsc = cityRepo.getNCitiesOrderByAqis(3, country.getName());
         List<Object[]> objTempDesc = cityRepo.getNCitiesOrderByTempDesc(3, country.getName());
@@ -64,7 +58,7 @@ public class PopupMapper {
         popupDTO.setTop3CitiesLowAqis(top3CitiesAqiAsc);
         popupDTO.setTop3CitiesHighTemp(top3CitiesTempDesc);
         popupDTO.setTop3CitiesLowTemp(top3CitiesTempAsc);
-        popupDTO.setLastUpdatedDateTime(country.getLastUpdatedDateTime().toString());
+        popupDTO.setLastUpdatedDateTime(String.valueOf(ChronoUnit.HOURS.between(country.getLastUpdatedDateTime(), LocalDateTime.now())));
         popupDTO.setStatusCode(HttpStatus.OK);
         return popupDTO;
     }

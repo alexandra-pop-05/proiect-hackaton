@@ -13,7 +13,6 @@ public class PopupDTO {
     private Double countryPressure;
     private Double countryHumidity;
     private Double countryWind;
-    private List<GeoLocDTO> recyclePoints;
     private List<CityMeasDTO> top3CitiesHighAqis; // 99, 98, 97, ...
     private List<CityMeasDTO> top3CitiesLowAqis; // 1, 2, 3, ...
     private List<CityMeasDTO> top3CitiesHighTemp;
