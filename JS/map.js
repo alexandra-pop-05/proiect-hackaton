@@ -22,7 +22,7 @@ window.onclick = function (event) {
 };
 
 const map = document.querySelector(".body");
-console.log(map);
+
 var scale = 1,
   panning = false,
   pointX = 0,
