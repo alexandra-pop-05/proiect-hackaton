@@ -61,19 +61,23 @@ map.addEventListener("mousemove", (e) => {
   setTransform();
 });
 
-map.addEventListener("wheel", (e) => {
-  e.preventDefault();
-  var delta = e.wheelDelta ? e.wheelDelta : -e.deltaY;
-  if (delta > 0) {
-    scale *= 1.2;
-    applyScale(e);
-  } else {
-    if (scale / 1.2 >= 1) {
-      scale /= 1.2;
+map.addEventListener(
+  "wheel",
+  (e) => {
+    e.preventDefault();
+    var delta = e.wheelDelta ? e.wheelDelta : -e.deltaY;
+    if (delta > 0) {
+      scale *= 1.2;
       applyScale(e);
+    } else {
+      if (scale / 1.2 >= 1) {
+        scale /= 1.2;
+        applyScale(e);
+      }
     }
-  }
-});
+  },
+  false
+);
 
 function applyScale(e) {
   var xs = (e.clientX - pointX) / scale,
