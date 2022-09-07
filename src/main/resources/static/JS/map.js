@@ -3,17 +3,6 @@ var countryCount = countryElements.length;
 var modal = document.getElementById("myModal");
 var modalHeader = document.getElementById("modal-header");
 var modalBody = document.getElementById("modal-body");
-var HttpClient = function () {
-  this.get = function (aUrl, aCallback) {
-    var anHttpRequest = new XMLHttpRequest();
-    anHttpRequest.onreadystatechange = function () {
-      if (anHttpRequest.readyState === 4 && anHttpRequest.status === 200)
-        aCallback(anHttpRequest.responseText);
-    }
-    anHttpRequest.open("GET", aUrl, true);
-    anHttpRequest.send(null);
-  }
-}
 
 for (var i = 0; i < countryCount; i++) {
   countryElements[i].onclick = function getName() {
@@ -21,7 +10,17 @@ for (var i = 0; i < countryCount; i++) {
 
     modalHeader.innerHTML += this.getAttribute("data-name");
     //var data = "<p> Salut <p>";
-
+    var HttpClient = function () {
+      this.get = function (aUrl, aCallback) {
+        var anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function () {
+          if (anHttpRequest.readyState === 4 && anHttpRequest.status === 200)
+            aCallback(anHttpRequest.responseText);
+        }
+        anHttpRequest.open("GET", aUrl, true);
+        anHttpRequest.send(null);
+      }
+    }
     var theurl = 'http://localhost:8080/countries/measurements?countryName=' + this.getAttribute("data-name");
     var client = new HttpClient();
     client.get(theurl, function (response){
@@ -150,22 +149,9 @@ path.forEach((link) => {
     e.preventDefault();
     description.classList.add("active");
     description.innerHTML = e.target.getAttribute("data-name");
-
-    var svg = d3.select("svg");
-    var theurl = 'http://localhost:8080/countries/recyclePoints?countryName=' + e.target.getAttribute("data-name");
-    var client = new HttpClient();
-
-    client.get(theurl, function (response) {
-      var response1 = JSON.parse(response);
-      for(var i = 0; i < response1.recyclePoints.length; i++){
-         svg.append("circle").attr("cx", 0).attr("cy", 0).attr("r", 1).style("fill", "purple").attr("transform", "translate(" + response1.recyclePoints[i].geoLatitude + 1000 + "," + response1.recyclePoints[i].geoLongitude + 1000 + ")");
-      }
-    });
   });
   link.addEventListener("mouseout", (e) => {
     description.classList.remove("active");
-    d3.selectAll("circle").remove();
-
   });
   link.addEventListener("mousemove", (e) => {
     description.style.left = e.pageX + "px";
